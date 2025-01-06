@@ -12,7 +12,10 @@ contract SimpleStorege {
     }
     // dynamic array
     Person[] public listOfPeople; // [] emty list
-    //  Person public pat = Person({favoriteNumber: 7, name: "Pat"});
+
+    mapping(uint256 => string) public favoriteNumberToName;
+
+    mapping(string => uint256) public nameToFavoriteNumber;
 
     function store(uint256 _favoriteNumber) public {
         myFavoriteNumber = _favoriteNumber;
@@ -24,5 +27,7 @@ contract SimpleStorege {
     }
     function addPerson(string memory _name, uint256 _favoriteNumber) public {
         listOfPeople.push(Person(_favoriteNumber, _name));
+        nameToFavoriteNumber[_name] = _favoriteNumber;
+        favoriteNumberToName[_favoriteNumber] = _name;
     }
 }
